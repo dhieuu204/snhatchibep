@@ -1,0 +1,204 @@
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  background: #e6f7ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2; /* Đảm bảo box ở trên canvas */
+}
+
+canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Đảm bảo canvas ở dưới */
+}
+
+#pinkboard {
+  position: relative;
+  margin: auto;
+  height: 500px;
+  width: 500px;
+  animation: animate 1.3s infinite;
+  z-index: 3; /* Đảm bảo trái tim ở trên canvas */
+}
+
+#pinkboard:before,
+#pinkboard:after {
+  content: "";
+  position: absolute;
+  background: #61c2f3 !important;
+  width: 100px;
+  height: 160px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+
+#pinkboard:before {
+  left: 100px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+#pinkboard:after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+@keyframes animate {
+  0% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(0.8);
+  }
+  60% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.center-text {
+  background-color: #e6f7ff;
+  width: 100%;
+  color: #59a1ee;
+  height: 100%;
+  font-size: 31px;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+  text-align: center;
+  font-family: "Protest Riot", sans-serif;
+  z-index: 2; /* Đảm bảo text nằm trên canvas */
+}
+
+.below-text {
+  margin-top: 20px;
+  font-family: "Protest Riot", sans-serif;
+  font-size: 24px;
+  color: #3399cc;
+  text-align: center;
+  z-index: 2; /* Đảm bảo text nằm trên canvas */
+}
+
+.view-letter-btn {
+  margin-top: 20px;
+  padding: 10px 25px;
+  font-family: "Protest Riot", sans-serif;
+  font-size: 20px;
+  border: none;
+  background-color: #3399cc;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 2; /* Đảm bảo nút ở trên canvas */
+}
+
+.view-letter-btn:hover {
+  background-color: #66b3ff;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.5s ease;
+}
+
+.popup-content {
+  background: #e6f7ff;
+  border: 3px solid #66b3ff;
+  border-radius: 20px;
+  padding: 30px 40px;
+  text-align: center;
+  max-width: 500px;
+  font-family: "Protest Riot", cursive;
+  font-size: 20px;
+  color: #004a99;
+  box-shadow: 0 0 25px #b3e0ff;
+  position: relative;
+  animation: scaleUp 0.4s ease;
+  z-index: 3; /* Đảm bảo popup ở trên canvas */
+}
+
+.popup-content::before {
+  content: "🎂";
+  font-size: 50px;
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 1.5s infinite;
+}
+
+.popup-content button {
+  margin-top: 25px;
+  padding: 10px 25px;
+  font-size: 16px;
+  font-family: "Arial", sans-serif;
+  border: none;
+  border-radius: 10px;
+  background-color: #66b3ff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.popup-content button:hover {
+  background-color: #3399cc;
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    background: rgba(0, 0, 0, 0);
+  }
+  to {
+    background: rgba(0, 0, 0, 0.4);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -10px);
+  }
+}
